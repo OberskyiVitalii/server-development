@@ -1,12 +1,12 @@
 from rest_framework import serializers
 
 from tickets.models import Tickets
-from routes.serializers.routes import RoutesSerializer
-from customers.serializers.customers import CustomersSerializer
+from routes.models import Routes
+from customers.models import Customers
 
 class TicketsSerializer(serializers.ModelSerializer):
-    route = RoutesSerializer()
-    customer = CustomersSerializer()
+    route = serializers.PrimaryKeyRelatedField(queryset=Routes.objects.all(), required=True)
+    customer = serializers.PrimaryKeyRelatedField(queryset=Customers.objects.all(), required=True)
     
     class Meta:
         model = Tickets

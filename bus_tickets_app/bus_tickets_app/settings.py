@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'schedule',
     'customers',
     'tickets',
+    'drf_spectacular',
 ]
 
 MIDDLEWARE = [
@@ -75,6 +76,17 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'bus_tickets_app.wsgi.application'
+
+REST_FRAMEWORK = {
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+}
+
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'Tickets API',
+    'DESCRIPTION': 'Tickets',
+    'VERSION': '1.0.0',
+    'SERVE_INCLUDE_SCHEMA': False,
+}
 
 
 # Database

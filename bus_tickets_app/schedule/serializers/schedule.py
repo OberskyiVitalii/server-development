@@ -1,10 +1,10 @@
 from rest_framework import serializers
 
 from schedule.models import Schedule
-from routes.serializers.routes import RoutesSerializer
+from routes.models import Routes
 
 class ScheduleSerializer(serializers.ModelSerializer):
-    route = RoutesSerializer()
+    route = serializers.PrimaryKeyRelatedField(queryset=Routes.objects.all(), required=False)
     
     class Meta:
         model = Schedule

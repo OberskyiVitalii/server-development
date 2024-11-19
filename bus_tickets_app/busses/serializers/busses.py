@@ -1,12 +1,12 @@
 from rest_framework import serializers
 
 from busses.models import Busses
-from drivers.serializers.drivers import DriversSerializer
-from routes.serializers.routes import RoutesSerializer
+from drivers.models import Drivers
+from routes.models import Routes
 
 class BussesSerializer(serializers.ModelSerializer):
-    driver = DriversSerializer()
-    route = RoutesSerializer()
+    driver = serializers.PrimaryKeyRelatedField(queryset=Drivers.objects.all(), required=False)
+    route = serializers.PrimaryKeyRelatedField(queryset=Routes.objects.all(), required=False)
     
     class Meta:
         model = Busses
