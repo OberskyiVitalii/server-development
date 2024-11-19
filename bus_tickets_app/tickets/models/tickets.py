@@ -1,11 +1,8 @@
 from django.db import models
 
-from routes.models import Routes
-from customers.models import Customers
-
 class Tickets(models.Model):
-    route_id = models.ForeignKey(Routes, on_delete=models.CASCADE)
-    client_id = models.ForeignKey(Customers, on_delete=models.CASCADE)
+    route = models.ForeignKey('routes.Routes', on_delete=models.CASCADE, null=False)
+    customer = models.ForeignKey('customers.Customers', on_delete=models.CASCADE, null=False)
     seat = models.IntegerField()
     status = models.CharField(max_length=255)
     price = models.FloatField()

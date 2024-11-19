@@ -1,9 +1,7 @@
 from django.db import models
 
-from routes.models import Routes
-
 class Schedule(models.Model):
-    route_id = models.ForeignKey(Routes, on_delete=models.CASCADE)
+    route = models.ForeignKey('routes.Routes', on_delete=models.SET_NULL, null=True)
     departure_time = models.DateTimeField()
     arrival_time = models.DateTimeField()
     status = models.CharField(max_length=100)
